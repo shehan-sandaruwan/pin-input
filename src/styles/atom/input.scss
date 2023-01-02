@@ -1,0 +1,18 @@
+:root {
+  --border-color: "#cbcbcb";
+  --border-active-color: "#3898EC";
+  --border-error-color: "#d50000";
+  --input-bg-color: "#f8f9fd";
+  --input-text-color: "#333333";
+}
+
+input[type="text"] {
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border-color);
+}
+
+input[type="text"] [data-state="error"] {
+  border: 1px solid var(--border-error-color);
+}
