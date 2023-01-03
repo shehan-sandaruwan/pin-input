@@ -1,10 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "../styles/atom/submitbutton.scss";
+import { VERIFY } from "../constant/messages";
 
-const SubmitButton = ({ buttonLabel, state, onClickSubmitHandler }) => {
+const SubmitButton = ({ state, onClickSubmitHandler }) => {
   return (
-    <button onClick={onClickSubmitHandler} data-state-btn={state}>
-      {buttonLabel}
+    <button
+      onClick={onClickSubmitHandler}
+      data-state-btn={state}
+      className="submit-button"
+    >
+      {VERIFY}
     </button>
   );
 };

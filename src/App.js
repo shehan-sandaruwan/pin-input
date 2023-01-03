@@ -1,12 +1,36 @@
+import { useEffect, useState } from "react";
 import "./App.scss";
-import Spinner from "./atom/Spinner";
+import PinInputModal from "./compound/PinIputModal";
+
+const numberOfInput = 5;
 
 function App() {
+  const [inputArray, setInputArray] = useState([]);
+
+  useEffect(() => {
+    const newInputArray = [];
+
+    for (let i = 0; i < numberOfInput; i++) {
+      const inputObj = {
+        value: "",
+        state: "",
+        key: i,
+      };
+      newInputArray.push(inputObj);
+    }
+
+    setInputArray(newInputArray);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <Spinner progress={270} />
-      </header>
+      <div className="App-header">
+        <PinInputModal
+          progress={60}
+          isSuccess={false}
+          inputArray={inputArray}
+        />
+      </div>
     </div>
   );
 }

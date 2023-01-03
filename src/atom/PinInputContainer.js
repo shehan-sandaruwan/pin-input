@@ -2,12 +2,8 @@ import React from "react";
 import "../styles/atom/pinInput.scss";
 import PropTypes from "prop-types";
 
-const PinInputCotainer = ({ pinInputContent }) => {
-  return <div className="container">{pinInputContent}</div>;
+const PinInputContainer = () => {
+  return <div className="container"></div>;
 };
 
-PinInputCotainer.prototype = {
-  pinInputContent: PropTypes.node,
-};
-
-export default PinInputCotainer;
+export default PinInputContainer;
