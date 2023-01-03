@@ -11,4 +11,7 @@
   background-position: 100% 100%;
   background-size: cover;
   background-repeat: no-repeat;
+  @media screen and (max-width: 576px) {
+    width: 80%;
+  }
 }

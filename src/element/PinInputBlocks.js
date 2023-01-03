@@ -3,13 +3,20 @@ import PropTypes from "prop-types";
 import InputButton from "../atom/InputButton";
 import "../styles/element/pininputblocks.scss";
 
-const PinInputBlocks = ({ inputArray }) => {
+const PinInputBlocks = ({ inputArray, inputChangeHandler, hideModeEnable }) => {
   return (
     <React.Fragment>
       <div className="input-block-container">
         {inputArray.map((item) => {
           return (
-            <InputButton value={item.value} state={item.state} key={item.key} />
+            <InputButton
+              value={item.value}
+              state={item.state}
+              index={item.key}
+              key={item.key}
+              onChangeInputValue={inputChangeHandler}
+              hideModeEnable={hideModeEnable}
+            />
           );
         })}
       </div>
@@ -19,6 +26,8 @@ const PinInputBlocks = ({ inputArray }) => {
 
 PinInputBlocks.propTypes = {
   inputArray: PropTypes.array,
+  inputChangeHandler: PropTypes.func,
+  hideModeEnable: PropTypes.bool,
 };
 
 export default PinInputBlocks;
