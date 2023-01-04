@@ -6,7 +6,7 @@ import "../styles/element/pininputblocks.scss";
 const PinInputBlocks = ({ inputArray, inputChangeHandler, hideModeEnable }) => {
   return (
     <React.Fragment>
-      <div className="input-block-container">
+      <div className="input-block-container" data-testid="pin-input-block">
         {inputArray.map((item) => {
           return (
             <InputButton

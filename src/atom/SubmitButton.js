@@ -9,6 +9,7 @@ const SubmitButton = ({ process, onClickSubmitHandler }) => {
       onClick={onClickSubmitHandler}
       data-state-btn={process === 100 ? "allow" : "not-allow"}
       className="submit-button"
+      data-testid="submit-btn"
     >
       {VERIFY}
     </button>

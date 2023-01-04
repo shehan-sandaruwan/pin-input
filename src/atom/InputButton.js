@@ -31,6 +31,7 @@ const InputButton = ({
           type="text"
           className="input-box"
           value={value}
+          data-testid="pin-input"
         />
         <span>&#46;</span>
       </div>
