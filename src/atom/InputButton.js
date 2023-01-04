@@ -13,7 +13,7 @@ const InputButton = ({
     if (state) {
       const input = document.querySelector(`[data-state=${state}]`);
       if (input) {
-        input.focus({ focusVisible: true });
+        input.focus();
       }
     }
   }, [state]);

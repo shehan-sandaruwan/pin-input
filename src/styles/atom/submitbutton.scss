@@ -17,8 +17,8 @@ button {
 }
 
 .submit-button:active[data-state-btn="allow"] {
-  scale: 0.8;
-  transition: scale linear 0.33s;
+  // scale: 0.8;
+  // transition: scale linear 0.33s;
 }
 
 .submit-button[data-state-btn="not-allow"] {
