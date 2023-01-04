@@ -7,8 +7,11 @@
   align-items: center;
   justify-content: flex-start;
   width: 50%;
-  height: 100%;
+  min-height: 100%;
   background-color: #fff;
   gap: 30px;
   flex: 1;
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
 }

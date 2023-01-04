@@ -1,19 +1,98 @@
-:root {
-  --border-color: "#cccccc";
-  --border-active-color: "#3898EC";
-  --border-error-color: "#d50000";
-  --input-bg-color: "#f8f9fd";
-  --input-text-color: "#333333";
+$border-color: #cccccc;
+$border-active-color: #3898ec;
+$border-error-color: #d50000;
+$input-bg-color: #f8f9fd;
+$input-text-color: #333333;
+
+input[type="text"]:focus,
+input[type="text"]:active,
+input[type="text"]:hover,
+input[type="text"]:focus-visible {
+  border: none;
 }
 
 input[type="text"] {
-  -webkit-appearance: none;
   width: 50px;
   height: 50px;
-  border: 1px solid #cccccc;
+  border: 1px solid $border-color;
   text-align: center;
+  visibility: visible;
+  transition: visibility 0.4s linear 0.1s;
 }
 
-input[type="text"] [data-state="error"] {
-  border: 1px solid var(--border-error-color);
+.pin-input-wrapper {
+  position: relative;
+  visibility: hidden;
+  transition: visibility 0.4s linear 0.5s;
+  & span {
+    position: absolute;
+    visibility: hidden;
+    right: 20px;
+    bottom: 11px;
+    font-size: 48px;
+    transition: visibility 0.5s linear 0.45s;
+  }
+}
+
+input[type="text"][data-state="success"][data-mode="hide"] {
+  visibility: hidden;
+}
+
+.pin-input-wrapper[data-mode="show"] {
+  & span {
+    visibility: hidden;
+    transition-delay: 0s;
+    transition-duration: 0s;
+  }
+}
+
+input[type="text"][data-state="success"][data-mode="show"] {
+  visibility: visible;
+}
+
+.pin-input-wrapper:has(
+    input[type="text"][data-state="success"]
+  )[data-mode="hide"] {
+  width: 50px;
+  height: 50px;
+  border: 1px solid $border-color;
+  text-align: center;
+  visibility: visible;
+  & span {
+    visibility: visible;
+  }
+}
+
+input[type="text"]:focus-visible {
+  border: 2px solid $border-active-color;
+  outline: $border-active-color auto 1px;
+}
+
+input[type="text"]:hover {
+  border: 1px solid $border-active-color;
+}
+
+input[type="text"][data-state="error"]:focus-visible {
+  outline: $border-error-color auto 1px;
+}
+
+input[type="text"][data-state="focus"]:focus-visible {
+  outline: $border-active-color auto 1px;
+}
+
+@keyframes changeLetter {
+  0% {
+    content: "";
+  }
+  50% {
+    color: white;
+  }
+  100% {
+    content: ".";
+  }
+}
+
+.input-box::after .input-box[data-mode="hide"][data-state="success"] {
+  content: ".";
+  animation: changeLetter 3s linear;
 }

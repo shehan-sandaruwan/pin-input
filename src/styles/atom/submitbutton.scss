@@ -13,4 +13,15 @@ button {
   font-size: 1.2em;
   cursor: pointer;
   -webkit-appearance: none;
+  scale: 1;
+}
+
+.submit-button:active[data-state-btn="allow"] {
+  scale: 0.8;
+  transition: scale linear 0.33s;
+}
+
+.submit-button[data-state-btn="not-allow"] {
+  cursor: not-allowed;
+  opacity: 0.5;
 }

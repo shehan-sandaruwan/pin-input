@@ -1,0 +1,22 @@
+.success {
+  color: #141e61;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+}
+
+.success.show {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+
+  & + label {
+    display: none;
+  }
+}
+
+.message-label {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+}

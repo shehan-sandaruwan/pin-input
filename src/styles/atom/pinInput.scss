@@ -1,7 +1,5 @@
-:root {
-  --container-box-shadow-color: rgb(0 0 0 / 29%);
-  --container-bg-color: #fff;
-}
+$container-box-shadow-color: rgb(0 0 0 / 29%);
+$container-bg-color: #fff;
 
 .container {
   display: flex;
@@ -9,8 +7,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
-  box-shadow: 7px 7px 20px 0 var(--container-box-shadow-color);
-  background-color: var(--container-bg-color);
+  box-shadow: 7px 7px 20px 0 $container-box-shadow-color;
+  background-color: $container-bg-color;
   width: 75%;
   height: 75%;
 }
