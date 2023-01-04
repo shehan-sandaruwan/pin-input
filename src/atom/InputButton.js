@@ -20,14 +20,20 @@ const InputButton = ({
 
   return (
     <React.Fragment>
-      <input
-        value={value}
-        data-state={state}
+      <div
+        className="pin-input-wrapper"
         data-mode={hideModeEnable ? "hide" : "show"}
-        onChange={(e) => onChangeInputValue(index, e.target.value)}
-        type="text"
-        className="input-box"
-      />
+      >
+        <input
+          data-state={state}
+          data-mode={hideModeEnable ? "hide" : "show"}
+          onChange={(e) => onChangeInputValue(index, e.target.value)}
+          type="text"
+          className="input-box"
+          value={value}
+        />
+        <span>&#46;</span>
+      </div>
     </React.Fragment>
   );
 };

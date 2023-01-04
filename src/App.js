@@ -1,9 +1,10 @@
+import { paste } from "@testing-library/user-event/dist/paste";
 import { useCallback, useEffect, useState } from "react";
 import "./App.scss";
 import PinInputModal from "./compound/PinIputModal";
 
-const numberOfInput = 5;
 const pin = "13456";
+const inputValue = "134   asdff56";
 
 function App() {
   const [inputArray, setInputArray] = useState([]);
@@ -12,19 +13,43 @@ function App() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const newInputArray = [];
+    if (document && inputArray.length > 0) {
+      document.addEventListener("paste", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
 
-    for (let i = 0; i < numberOfInput; i++) {
-      const inputObj = {
-        value: "",
-        state: i === 0 ? "focus" : "",
-        key: i,
-      };
-      newInputArray.push(inputObj);
+        handlePasteInputEvent(event);
+      });
     }
 
-    setInputArray(newInputArray);
-  }, []);
+    return () => {
+      document.removeEventListener("paste", handlePasteInputEvent);
+    };
+  }, [inputArray]);
+
+  useEffect(() => {
+    if (pinValue) {
+      const generatedInputArray = generateInputArray();
+      setInputArray(generatedInputArray);
+    }
+  }, [pinValue]);
+
+  const handlePasteInputEvent = (event) => {
+    const paste = event.clipboardData.getData("text");
+
+    if (paste) {
+      const pattern = /^\d+(?: *- *[a-zA-Z0-9 ]+)+$/;
+      const _pinValue = paste.split(pattern)?.join("");
+
+      for (let i = 0; i < _pinValue.length; i++) {
+        onChangeInputValue(i, _pinValue[i]);
+
+        if (_pinValue.charAt(i) !== pinValue.charAt(i)) {
+          break;
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     modeledPin(pin);
@@ -34,11 +59,26 @@ function App() {
     setPinValue(pin);
   }, []);
 
-  const onChangeInputValue = useCallback((key, value) => {
+  const generateInputArray = useCallback(() => {
+    const newInputArray = [];
+
+    for (let i = 0; i < pinValue.length; i++) {
+      const inputObj = {
+        value: "",
+        state: i === 0 ? "focus" : "",
+        key: i,
+      };
+      newInputArray.push(inputObj);
+    }
+
+    return newInputArray;
+  }, [pinValue]);
+
+  const onChangeInputValue = (key, value) => {
     const modifiedInputArray = inputArray.map((input, index) => {
       if (input.key === key && pinValue.charAt(index) === value) {
         input.value = value;
-        input.state = "sucess";
+        input.state = "success";
         const _progress = ((index + 1) / inputArray.length) * 100;
         setProgress(_progress);
         if (inputArray[index + 1]) {
@@ -53,7 +93,7 @@ function App() {
     });
 
     setInputArray(modifiedInputArray);
-  });
+  };
 
   const onClickHideMode = (event) => {
     setHideModeEnable(event.target.checked);

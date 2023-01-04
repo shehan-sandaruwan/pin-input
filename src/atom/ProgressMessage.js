@@ -8,7 +8,7 @@ import "../styles/atom/progressMessage.scss";
 const ProgressMessage = ({ progress = 0 }) => {
   return (
     <div>
-      <div className={`success ${progress === 100 && "show"}`}>
+      <div className={`success ${progress === 100 ? "show" : ""}`}>
         <Icon size={32} icon={check} />
       </div>
       {progress === 0 ? (
@@ -16,7 +16,7 @@ const ProgressMessage = ({ progress = 0 }) => {
           <Icon size={32} icon={lock} />
         </div>
       ) : (
-        <label>{`${progress} %`}</label>
+        <label className="message-label">{`${progress} %`}</label>
       )}
     </div>
   );
