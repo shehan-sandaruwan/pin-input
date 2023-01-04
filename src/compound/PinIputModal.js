@@ -12,6 +12,7 @@ const PinInputModal = ({
   inputChangeHandler,
   hideModeEnable,
   onClickHideMode,
+  onSumitHandler,
 }) => {
   return (
     <div className="input-modal">
@@ -24,6 +25,7 @@ const PinInputModal = ({
         inputChangeHandler={inputChangeHandler}
         hideModeEnable={hideModeEnable}
         onClickHideMode={onClickHideMode}
+        onSumitHandler={onSumitHandler}
       />
     </div>
   );
@@ -37,6 +39,7 @@ PinInputModal.prototype = {
   inputChangeHandler: PropTypes.func,
   hideModeEnable: PropTypes.bool,
   onClickHideMode: PropTypes.func,
+  onSumitHandler: PropTypes.func,
 };
 
 export default PinInputModal;

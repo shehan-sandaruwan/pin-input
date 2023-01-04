@@ -1,7 +1,7 @@
-import { paste } from "@testing-library/user-event/dist/paste";
 import { useCallback, useEffect, useState } from "react";
 import "./App.scss";
 import PinInputModal from "./compound/PinIputModal";
+import ToastMessage from "./compound/ToastMessage";
 
 const pin = "13456";
 const inputValue = "134   asdff56";
@@ -11,6 +11,10 @@ function App() {
   const [pinValue, setPinValue] = useState("");
   const [hideModeEnable, setHideModeEnable] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [alertConf, setAlertConf] = useState({
+    message: "",
+    severity: "none",
+  });
 
   useEffect(() => {
     if (document && inputArray.length > 0) {
@@ -99,8 +103,18 @@ function App() {
     setHideModeEnable(event.target.checked);
   };
 
+  const onSumitHandler = () => {
+    if (progress === 100) {
+      setAlertConf({
+        message: "Success !",
+        severity: "success",
+      });
+    }
+  };
+
   return (
     <div className="App">
+      <ToastMessage message={alertConf.message} severity={alertConf.severity} />
       <div className="App-header">
         <PinInputModal
           progress={progress}
@@ -110,6 +124,7 @@ function App() {
           inputChangeHandler={onChangeInputValue}
           hideModeEnable={hideModeEnable}
           onClickHideMode={onClickHideMode}
+          onSumitHandler={onSumitHandler}
         />
       </div>
     </div>

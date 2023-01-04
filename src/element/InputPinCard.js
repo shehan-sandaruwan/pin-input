@@ -16,6 +16,7 @@ const InputPinCard = ({
   inputChangeHandler,
   onClickHideMode,
   hideModeEnable,
+  onSumitHandler,
 }) => {
   const addHideModeInput = useMemo(() => {
     return (
@@ -45,7 +46,7 @@ const InputPinCard = ({
         hideModeEnable={hideModeEnable}
       />
       {addHideModeInput}
-      <SubmitButton />
+      <SubmitButton onClickSubmitHandler={onSumitHandler} process={progress} />
     </div>
   );
 };
@@ -56,6 +57,7 @@ InputPinCard.prototype = {
   inputArray: PropTypes.array,
   inputChangeHandler: PropTypes.func,
   onClickHideMode: PropTypes.func,
+  onSumitHandler: PropTypes.func,
 };
 
 export default InputPinCard;

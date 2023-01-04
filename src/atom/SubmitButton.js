@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import "../styles/atom/submitbutton.scss";
 import { VERIFY } from "../constant/messages";
 
-const SubmitButton = ({ state, onClickSubmitHandler }) => {
+const SubmitButton = ({ process, onClickSubmitHandler }) => {
   return (
     <button
       onClick={onClickSubmitHandler}
-      data-state-btn={state}
+      data-state-btn={process === 100 ? "allow" : "not-allow"}
       className="submit-button"
     >
       {VERIFY}
@@ -16,8 +16,7 @@ const SubmitButton = ({ state, onClickSubmitHandler }) => {
 };
 
 SubmitButton.propTypes = {
-  state: PropTypes.string,
-  buttonLabel: PropTypes.string,
+  process: PropTypes.number,
   onClickSubmitHandler: PropTypes.func,
 };
 
